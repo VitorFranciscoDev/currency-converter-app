@@ -1,16 +1,55 @@
-# currency_converter
+# Currency Converter App
 
-A new Flutter project.
+A Flutter application for converting currencies using a Go backend that fetches data from a public API.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+- Convert between major world currencies (BRL, USD, EUR, GBP, etc.)
 
-A few resources to get you started if this is your first Flutter project:
+- Real-time exchange rates fetched via a Go backend
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Simple and intuitive Flutter UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Supports multiple currencies with automatic updates
+
+# Architecture
+
+- Frontend: Flutter
+
+- Backend: Go
+
+The Flutter app communicates with the Go backend to fetch the latest exchange rates, keeping the UI lightweight and responsive.
+
+# Installation
+
+### Frontend (Flutter)
+```
+git clone github.com/VitorFranciscoDev/CurrencyConverter
+
+cd CurrencyConverter
+
+flutter pub get
+
+usecases/currency_converter.dart
+- use your [IP] where is marked
+
+flutter run
+
+Make sure the backend server is running and accessible by the app.
+```
+
+### Backend (Go)
+
+```
+go to github.com/VitorFranciscoDev/CurrencyConverterAPI to install
+```
+
+# Usage
+
+1. Open the app.
+
+2. Select the currency you want to convert from and to.
+
+3. Enter the amount.
+
+4. See the converted value instantly.
