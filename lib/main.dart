@@ -1,0 +1,25 @@
+import 'package:currency_converter/presentation/screens/currency_converter_screen.dart';
+import 'package:currency_converter/presentation/providers/currency_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CurrencyProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: CurrencyConverterScreen(),
+    );
+  }
+}
