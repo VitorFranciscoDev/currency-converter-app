@@ -1,15 +1,8 @@
-import 'package:currency_converter/infrastructure/presentation/screens/currency_converter_screen.dart';
-import 'package:currency_converter/infrastructure/presentation/providers/currency_provider.dart';
+import 'package:currency_converter/infrastructure/presentation/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => CurrencyProvider(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CurrencyConverterScreen(),
+      home: HomeScreen(),
     );
   }
 }
