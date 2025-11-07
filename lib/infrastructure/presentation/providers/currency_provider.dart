@@ -1,4 +1,4 @@
-import 'package:currency_converter/entities/currency.dart';
+import 'package:currency_converter/domain/entities/currency.dart';
 import 'package:flutter/material.dart';
 
 class CurrencyProvider with ChangeNotifier {

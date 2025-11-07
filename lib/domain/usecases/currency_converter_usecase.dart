@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:currency_converter/entities/currency_converter.dart';
+import 'package:currency_converter/domain/entities/currency_converter.dart';
 import 'package:http/http.dart' as http;
 
 class CurrencyConverterUseCase {

@@ -1,6 +1,6 @@
-import 'package:currency_converter/presentation/components/country_container.dart';
-import 'package:currency_converter/presentation/screens/currency_converter_screen.dart';
-import 'package:currency_converter/presentation/providers/currency_provider.dart';
+import 'package:currency_converter/infrastructure/presentation/components/country_container.dart';
+import 'package:currency_converter/infrastructure/presentation/screens/currency_converter_screen.dart';
+import 'package:currency_converter/infrastructure/presentation/providers/currency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
