@@ -1,6 +1,6 @@
-import 'package:currency_converter/core/constants/intl/intl_state.dart';
-import 'package:currency_converter/core/constants/theme/theme.dart';
-import 'package:currency_converter/core/constants/theme/theme_state.dart';
+import 'package:currency_converter/core/intl/intl_state.dart';
+import 'package:currency_converter/core/theme/theme.dart';
+import 'package:currency_converter/core/theme/theme_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/login_screen.dart';
 import 'package:flutter/material.dart';

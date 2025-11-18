@@ -4,12 +4,12 @@ import 'package:currency_converter/infrastructure/database/database.dart';
 import 'package:currency_converter/infrastructure/models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final database = CurrencyConverterDatabase();
+  final dbManager = CurrencyConverterDatabase.instance;
 
   @override
   Future<User?> login(String email, String password) async {
     try {
-      final db = await database.database;
+      final db = await dbManager.database;
 
       final user = await db.query(
         'users',
@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<User?> getUserByEmail(String email) async {
     try {
-      final db = await database.database;
+      final db = await dbManager.database;
 
       final user = await db.query(
         'users',
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<int> addUser(User user) async {
     try {
-      final db = await database.database;
+      final db = await dbManager.database;
 
       final userModel = UserModel(
         id: user.id,
@@ -61,7 +61,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<int> deleteUser(int? id) async {
     try {
-      final db = await database.database;
+      final db = await dbManager.database;
 
       return await db.delete(
         'users',
@@ -76,7 +76,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<int> updateUser(User user) async {
     try {
-      final db = await database.database;
+      final db = await dbManager.database;
 
       final userModel = UserModel(
         id: user.id,
