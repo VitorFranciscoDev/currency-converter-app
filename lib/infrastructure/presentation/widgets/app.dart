@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     final authProvider = context.watch<AuthProvider>();
     
     return MaterialApp(
+      /*
       locale: intlProvider.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         Locale('pt', 'BR'),
         Locale('es', 'ES'),
       ],
+      */
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeProvider.themeMode,

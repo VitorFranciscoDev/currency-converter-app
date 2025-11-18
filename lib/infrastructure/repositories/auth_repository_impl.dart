@@ -3,7 +3,6 @@ import 'package:currency_converter/domain/repositories/auth_repository.dart';
 import 'package:currency_converter/infrastructure/database/database.dart';
 import 'package:currency_converter/infrastructure/models/user_model.dart';
 
-// Auth Repository Implementation
 class AuthRepositoryImpl implements AuthRepository {
   final database = CurrencyConverterDatabase();
 

@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 
-// Users SQLite Table
 class UsersTable {
   static Future<void> createTable(Database db) async {
     await db.execute('''
