@@ -1,7 +1,7 @@
-import 'package:currency_converter/core/intl/intl_state.dart';
+//import 'package:currency_converter/core/intl/intl_state.dart';
 import 'package:currency_converter/core/theme/theme.dart';
 import 'package:currency_converter/core/theme/theme_state.dart';
-import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
+//import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final intlProvider = context.watch<IntlProvider>();
+    //final intlProvider = context.watch<IntlProvider>();
     final themeProvider = context.watch<ThemeProvider>();
-    final authProvider = context.watch<AuthProvider>();
+    //final authProvider = context.watch<AuthProvider>();
     
     return MaterialApp(
       /*
