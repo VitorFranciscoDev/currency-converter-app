@@ -1,6 +1,6 @@
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/register_screen.dart';
-import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/bottom_navigator_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/outlined_button_widget.dart';
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = await provider.login(_controllerEmail.text, _controllerPassword.text);
 
       if(user != null) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavigatorWidget()));
         _clearFields();
 
         _showSnackBar("Login Successful", false);
@@ -69,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final provider = context.watch<AuthProvider>();
 
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
@@ -82,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _controllerEmail, 
               label: "Email", 
               hint: "your@email.com",
+              error: provider.errorEmail,
             ),
 
             const SizedBox(height: 10),
@@ -90,6 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _controllerPassword, 
               label: "Password", 
               hint: "password",
+              error: provider.errorPassword,
+              isPassword: true,
             ),
 
             const SizedBox(height: 10),
@@ -109,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
               function: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
                 _clearFields();
+                provider.clearValidationErrors();
               }, 
               message1: "Doesn't have an account? ", 
               message2: "Create one!",

@@ -71,7 +71,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final provider = context.watch<AuthProvider>();
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.background,
       body: Padding(
         padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
         child: Column(
@@ -82,6 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: _controllerName, 
               label: "Name", 
               hint: "Name",
+              error: provider.errorName,
             ),
 
             const SizedBox(height: 10),
@@ -91,6 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: _controllerEmail, 
               label: "Email", 
               hint: "your@email.com",
+              error: provider.errorEmail,
             ),
 
             const SizedBox(height: 10),
@@ -99,13 +105,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: _controllerPassword, 
               label: "Password", 
               hint: "password",
+              error: provider.errorPassword,
+              isPassword: true,
             ),
 
             const SizedBox(height: 10),
 
             ElevatedButtonWidget(
               function: () => _registerUser(), 
-              text: "Sign In",
+              text: "Sign Up",
             ),
 
             const SizedBox(height: 20),
@@ -118,6 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               function: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                 _clearFields();
+                provider.clearValidationErrors();
               }, 
               message1: "Already have an account? ", 
               message2: "Go to Login",
