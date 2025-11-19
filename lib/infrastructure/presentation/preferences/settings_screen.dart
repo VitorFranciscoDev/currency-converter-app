@@ -11,9 +11,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
+          const SizedBox(height: 30),
+
           
         ],
       ),

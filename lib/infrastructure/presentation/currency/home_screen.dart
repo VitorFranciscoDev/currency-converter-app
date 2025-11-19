@@ -2,9 +2,16 @@ import 'package:currency_converter/infrastructure/presentation/auth/auth_state.d
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _controllerSearch = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -60,6 +67,55 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+
+          const SizedBox(height: 20),
+
+          TextField(
+            controller: _controllerSearch,
+            onChanged: (value) {
+              //context.read<HomeProvider>().searchLocations(value);
+            },
+            style: TextStyle(fontSize: 15),
+            decoration: InputDecoration(
+              hintText: "Search Currencies...",
+              hintStyle: TextStyle(color: Colors.grey[400], fontSize: 15),
+              prefixIcon: Icon(
+                Icons.search,
+                color: theme.colorScheme.primary,
+                size: 24,
+              ),
+              suffixIcon: _controllerSearch.text.isNotEmpty
+                ? IconButton(
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.grey[600],
+                      size: 20,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _controllerSearch.clear();
+                      });
+                    },
+                  )
+                : null,
+              filled: true,
+              fillColor: theme.colorScheme.background,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary.withOpacity(0.3),
+                  width: 1.5,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+              ),
+            ),
           ),
         ],
       ),
