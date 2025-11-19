@@ -1,20 +1,17 @@
+import 'package:currency_converter/core/constants/default.dart';
 import 'package:currency_converter/core/constants/shared_preferences_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Provider to manage the Internalization of the Application
 class IntlProvider extends ChangeNotifier {
-
   // Contructor (Load Intl Data)
   IntlProvider() {
     _initializeLanguage();
   }
 
-  // Default Locale (English)
-  static const Locale _defaultLocale = Locale('en', 'US');
-
   // Current Locale
-  Locale _currentLocale = _defaultLocale;
+  Locale _currentLocale = Default.defaultLocale;
   Locale get currentLocale => _currentLocale;
 
   // Is Initialized Boolean
@@ -25,50 +22,16 @@ class IntlProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  // Supported Locales by the Application
-  List<Locale> get supportedLocales => const [
-    Locale('en', 'US'),
-    Locale('pt', 'BR'),
-    Locale('es', 'ES'),
-  ];
-
-  // Supported Locales Codes
-  List<String> get supportedLanguageCodes => ['en', 'pt', 'es'];
-
-  // Current Language Code Getter
-  String get currentLanguageCode {
-    return _currentLocale.languageCode;
-  }
-
-  // Getter to Name of Current Language
-  String get currentLanguageName {
-    switch (_currentLocale.languageCode) {
-      case 'en':
-        return 'English';
-      case 'pt':
-        return 'Português';
-      case 'es':
-        return 'Español';
-      default:
-        return 'English';
-    }
-  }
-
-  // bool to Language Supported
-  bool isLanguageSupported(String languageCode) {
-    return supportedLanguageCodes.contains(languageCode);
-  }
-
   // Initializes the Language
   Future<void> _initializeLanguage() async {
     _setInitialized(true);
 
     try {
       final savedLocale = await _loadLocaleFromStorage();
-      _setLocale(savedLocale ?? _defaultLocale);
+      _setLocale(savedLocale ?? Default.defaultLocale);
     } catch (error) {
       debugPrint('Error loading language: $error');
-      _setLocale(_defaultLocale);
+      _setLocale(Default.defaultLocale);
     } finally {
       _setInitialized(false);
     }
@@ -94,10 +57,6 @@ class IntlProvider extends ChangeNotifier {
 
   // Change Language
   Future<void> changeLanguage(String languageCode) async {
-    if (!isLanguageSupported(languageCode)) {
-      throw Exception("Unsupported Language.");
-    }
-
     if (_currentLocale.languageCode == languageCode) {
       return;
     }
@@ -142,7 +101,7 @@ class IntlProvider extends ChangeNotifier {
       case 'es':
         return const Locale('es', 'ES');
       default:
-        return _defaultLocale;
+        return Default.defaultLocale;
     }
   }
 }

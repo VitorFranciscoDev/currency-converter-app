@@ -1,7 +1,10 @@
 import 'package:currency_converter/domain/entities/user.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
+import 'package:currency_converter/infrastructure/presentation/auth/login_screen.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/outlined_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -74,11 +77,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo
-            Text("Data"),
-            
-            const SizedBox(height: 20),
-
             // Name
             TextFieldWidget(
               controller: _controllerName, 
@@ -108,6 +106,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ElevatedButtonWidget(
               function: () => _registerUser(), 
               text: "Sign In",
+            ),
+
+            const SizedBox(height: 20),
+
+            DividerWidget(),
+
+            const SizedBox(height: 20),
+
+            OutlinedButtonWidget(
+              function: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                _clearFields();
+              }, 
+              message1: "Already have an account? ", 
+              message2: "Go to Login",
             ),
           ],
         ),

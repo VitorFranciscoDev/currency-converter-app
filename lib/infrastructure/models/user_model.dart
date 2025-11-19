@@ -1,5 +1,6 @@
 import 'package:currency_converter/domain/entities/user.dart';
 
+// User's Model
 class UserModel extends User {
   const UserModel({
     required super.id, 
@@ -8,6 +9,7 @@ class UserModel extends User {
     required super.password
   });
 
+  // User => Json
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -17,6 +19,7 @@ class UserModel extends User {
     };
   }
 
+  // Json => User
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'], 

@@ -1,5 +1,6 @@
 import 'package:currency_converter/domain/entities/currency.dart';
 
+// Currency Contracts
 abstract class CurrencyRepository {
   Future<List<Currency>> getCurrency();
   Future<Currency?> getCurrencyByBase(String baseCurrency);

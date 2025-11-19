@@ -11,6 +11,8 @@ class ElevatedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ElevatedButton(
       onPressed: () => function(),
       style: ElevatedButton.styleFrom(
@@ -18,8 +20,8 @@ class ElevatedButtonWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(24),
         ),
-        backgroundColor: Colors.grey[200],
-        foregroundColor: Colors.grey[400]
+        backgroundColor: theme.colorScheme.primary,
+        foregroundColor: theme.colorScheme.background,
       ),
       child: Text(text),
     );

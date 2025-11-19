@@ -1,6 +1,9 @@
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
+import 'package:currency_converter/infrastructure/presentation/auth/register_screen.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/outlined_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,17 +68,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.background,
       body: Padding(
         padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo
-            Text("Data"),
-            
-            const SizedBox(height: 20),
-
             // Email
             TextFieldWidget(
               controller: _controllerEmail, 
@@ -96,6 +97,21 @@ class _LoginScreenState extends State<LoginScreen> {
             ElevatedButtonWidget(
               function: () => _login(), 
               text: "Sign In",
+            ),
+
+            const SizedBox(height: 20),
+
+            DividerWidget(),
+
+            const SizedBox(height: 20),
+
+            OutlinedButtonWidget(
+              function: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                _clearFields();
+              }, 
+              message1: "Doesn't have an account? ", 
+              message2: "Create one!",
             ),
           ],
         ),

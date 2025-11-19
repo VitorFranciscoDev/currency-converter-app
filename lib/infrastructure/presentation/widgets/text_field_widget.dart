@@ -22,11 +22,13 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return TextField(
       controller: widget.controller,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.grey[200],
+        fillColor: theme.colorScheme.background,
         hintText: widget.hint,
         hintStyle: TextStyle(
           color: Colors.grey[400],
@@ -34,19 +36,27 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         errorText: widget.error,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+            color: theme.colorScheme.primary,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+            color: theme.colorScheme.primary,
+          ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+            color: theme.colorScheme.primary,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+            color: theme.colorScheme.primary,
+          ),
         ),
       ),
     );

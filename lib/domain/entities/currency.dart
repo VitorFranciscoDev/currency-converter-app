@@ -1,12 +1,16 @@
+// Currency's Entitie
 class Currency {
+  // Attributes
   final String base;
   final List<Map<String, double>> rates;
 
+  // Constructor
   const Currency({
     required this.base,
     required this.rates,
   });
 
+  // Currency's Copy
   Currency copyWith({
     String? base,
     List<Map<String, double>>? rates,
@@ -17,36 +21,7 @@ class Currency {
     );
   }
 
-  double? getRateFor(String currencyCode) {
-    for (final rateMap in rates) {
-      if (rateMap.containsKey(currencyCode)) {
-        return rateMap[currencyCode];
-      }
-    }
-    return null;
-  }
-
-  double? convert(double amount, String targetCurrency) {
-    final rate = getRateFor(targetCurrency);
-    return rate != null ? amount * rate : null;
-  }
-
-  List<String> get availableCurrencies {
-    final currencies = <String>{};
-    for (final rateMap in rates) {
-      currencies.addAll(rateMap.keys);
-    }
-    return currencies.toList()..sort();
-  }
-
-  bool hasCurrency(String currencyCode) {
-    return getRateFor(currencyCode) != null;
-  }
-
-  int get currencyCount => availableCurrencies.length;
-
-  bool get hasRates => rates.isNotEmpty;
-
+  // Override to Compare Objects
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -56,6 +31,7 @@ class Currency {
         _areRatesEqual(other.rates, rates);
   }
 
+  // Operator ==
   bool _areRatesEqual(
     List<Map<String, double>> rates1,
     List<Map<String, double>> rates2,
@@ -78,11 +54,13 @@ class Currency {
     return true;
   }
 
+  // Override to Compare Objects
   @override
   int get hashCode => base.hashCode ^ rates.hashCode;
 
+  // Debug Print
   @override
   String toString() {
-    return 'Currency(base: $base, currencies: $currencyCount)';
+    return 'Currency(base: $base, rates: $rates)';
   }
 }
