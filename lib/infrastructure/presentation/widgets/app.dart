@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       */
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: themeProvider.themeMode,
+      themeMode: themeProvider.currentThemeMode,
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
     );
