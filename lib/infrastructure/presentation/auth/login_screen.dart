@@ -78,31 +78,92 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Email
-            TextFieldWidget(
-              controller: _controllerEmail, 
-              label: "Email", 
-              hint: "your@email.com",
-              error: provider.errorEmail,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: const Icon(
+                    Icons.currency_exchange_rounded,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
+                
+                const SizedBox(width: 12),
+                
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Currency Converter",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    Text(
+                      "EXCHANGE MADE SIMPLE",
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.primary,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
 
-            TextFieldWidget(
-              controller: _controllerPassword, 
-              label: "Password", 
-              hint: "password",
-              error: provider.errorPassword,
-              isPassword: true,
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withOpacity(0.2),
+                  width: 1.5,
+                ),
+              ),
+              child: Column(
+                children: [
+                  // Email
+                  TextFieldWidget(
+                    controller: _controllerEmail, 
+                    label: "Email", 
+                    hint: "your@email.com",
+                    error: provider.errorEmail,
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  TextFieldWidget(
+                    controller: _controllerPassword, 
+                    label: "Password", 
+                    hint: "password",
+                    error: provider.errorPassword,
+                    isPassword: true,
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  ElevatedButtonWidget(
+                    function: () => _login(), 
+                    text: "Sign In",
+                  ),
+                ],
+              ),
             ),
-
-            const SizedBox(height: 10),
-
-            ElevatedButtonWidget(
-              function: () => _login(), 
-              text: "Sign In",
-            ),
-
+            
             const SizedBox(height: 20),
 
             DividerWidget(),
