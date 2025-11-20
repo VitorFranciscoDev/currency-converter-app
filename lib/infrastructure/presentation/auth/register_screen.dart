@@ -77,99 +77,103 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo
-            LogoWidget(isHorizontal: true, size: 40),
-
-            const SizedBox(height: 30),
-
-            // Form
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.background,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(
-                  color: theme.colorScheme.primary,
-                  width: 1.5,
-                ),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    "Welcome!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Logo
+                LogoWidget(isHorizontal: true, size: 40),
+          
+                const SizedBox(height: 30),
+          
+                // Form
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.background,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: theme.colorScheme.primary,
+                      width: 1.5,
                     ),
                   ),
-
-                  const Text("Sign Up to see all currencies."),
-
-                  const SizedBox(height: 20),
-
-                  // Email
-                  TextFieldWidget(
-                    controller: _controllerEmail, 
-                    label: "Name", 
-                    hint: "name",
-                    error: provider.errorEmail,
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Welcome!",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+          
+                      const Text("Sign Up to see all currencies."),
+          
+                      const SizedBox(height: 20),
+          
+                      // Email
+                      TextFieldWidget(
+                        controller: _controllerEmail, 
+                        label: "Name", 
+                        hint: "name",
+                        error: provider.errorEmail,
+                      ),
+          
+                      const SizedBox(height: 10),
+          
+                      // Email
+                      TextFieldWidget(
+                        controller: _controllerEmail, 
+                        label: "Email", 
+                        hint: "your@email.com",
+                        error: provider.errorEmail,
+                      ),
+          
+                      const SizedBox(height: 10),
+          
+                      // Password
+                      TextFieldWidget(
+                        controller: _controllerPassword, 
+                        label: "Password", 
+                        hint: "password",
+                        error: provider.errorPassword,
+                        isPassword: true,
+                      ),
+          
+                      const SizedBox(height: 10),
+          
+                      // Button
+                      ElevatedButtonWidget(
+                        function: () => _registerUser(), 
+                        text: "Sign Up",
+                      ),
+          
+                      const SizedBox(height: 5),
+                    ],
                   ),
-
-                  const SizedBox(height: 10),
-
-                  // Email
-                  TextFieldWidget(
-                    controller: _controllerEmail, 
-                    label: "Email", 
-                    hint: "your@email.com",
-                    error: provider.errorEmail,
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  // Password
-                  TextFieldWidget(
-                    controller: _controllerPassword, 
-                    label: "Password", 
-                    hint: "password",
-                    error: provider.errorPassword,
-                    isPassword: true,
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  // Button
-                  ElevatedButtonWidget(
-                    function: () => _registerUser(), 
-                    text: "Sign Up",
-                  ),
-
-                  const SizedBox(height: 5),
-                ],
-              ),
+                ),
+          
+                const SizedBox(height: 20),
+          
+                DividerWidget(),
+          
+                const SizedBox(height: 20),
+          
+                OutlinedButtonWidget(
+                  function: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    _clearFields();
+                    provider.clearValidationErrors();
+                  }, 
+                  message1: "Already have an account? ", 
+                  message2: "Go to Login",
+                ),
+              ],
             ),
-
-            const SizedBox(height: 20),
-
-            DividerWidget(),
-
-            const SizedBox(height: 20),
-
-            OutlinedButtonWidget(
-              function: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                _clearFields();
-                provider.clearValidationErrors();
-              }, 
-              message1: "Already have an account? ", 
-              message2: "Go to Login",
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -74,91 +74,94 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Logo
-            LogoWidget(isHorizontal: true, size: 40),
-
-            const SizedBox(height: 30),
-
-            // Form
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.background,
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(
-                  color: theme.colorScheme.primary,
-                  width: 1.5,
-                ),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    "Welcome Back!",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsetsGeometry.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                // Logo
+                LogoWidget(isHorizontal: true, size: 40),
+          
+                const SizedBox(height: 30),
+          
+                // Form
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.background,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: theme.colorScheme.primary,
+                      width: 1.5,
                     ),
                   ),
-
-                  const Text("Log In to trade currencies."),
-
-                  const SizedBox(height: 20),
-
-                  // Email
-                  TextFieldWidget(
-                    controller: _controllerEmail, 
-                    label: "Email", 
-                    hint: "your@email.com",
-                    error: provider.errorEmail,
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Welcome Back!",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+          
+                      const Text("Log In to trade currencies."),
+          
+                      const SizedBox(height: 20),
+          
+                      // Email
+                      TextFieldWidget(
+                        controller: _controllerEmail, 
+                        label: "Email", 
+                        hint: "your@email.com",
+                        error: provider.errorEmail,
+                      ),
+          
+                      const SizedBox(height: 10),
+          
+                      // Password
+                      TextFieldWidget(
+                        controller: _controllerPassword, 
+                        label: "Password", 
+                        hint: "password",
+                        error: provider.errorPassword,
+                        isPassword: true,
+                      ),
+          
+                      const SizedBox(height: 10),
+          
+                      // Button
+                      ElevatedButtonWidget(
+                        function: () => _login(), 
+                        text: "Sign In",
+                      ),
+          
+                      const SizedBox(height: 5),
+                    ],
                   ),
-
-                  const SizedBox(height: 10),
-
-                  // Password
-                  TextFieldWidget(
-                    controller: _controllerPassword, 
-                    label: "Password", 
-                    hint: "password",
-                    error: provider.errorPassword,
-                    isPassword: true,
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  // Button
-                  ElevatedButtonWidget(
-                    function: () => _login(), 
-                    text: "Sign In",
-                  ),
-
-                  const SizedBox(height: 5),
-                ],
-              ),
+                ),
+                
+                const SizedBox(height: 20),
+          
+                // Divider
+                DividerWidget(),
+          
+                const SizedBox(height: 20),
+          
+                // Navigation to Register Button
+                OutlinedButtonWidget(
+                  function: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                    _clearFields();
+                    provider.clearValidationErrors();
+                  }, 
+                  message1: "Doesn't have an account? ", 
+                  message2: "Create one!",
+                ),
+              ],
             ),
-            
-            const SizedBox(height: 20),
-
-            // Divider
-            DividerWidget(),
-
-            const SizedBox(height: 20),
-
-            // Navigation to Register Button
-            OutlinedButtonWidget(
-              function: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
-                _clearFields();
-                provider.clearValidationErrors();
-              }, 
-              message1: "Doesn't have an account? ", 
-              message2: "Create one!",
-            ),
-          ],
+          ),
         ),
       ),
     );
