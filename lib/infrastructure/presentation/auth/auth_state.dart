@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:currency_converter/core/constants/shared_preferences_keys.dart';
 import 'package:currency_converter/domain/entities/user.dart';
-import 'package:currency_converter/domain/usecases/auth_usecases.dart';
+import 'package:currency_converter/domain/usecases/user_usecases.dart';
 import 'package:currency_converter/infrastructure/models/user_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Provider to manage authentication and user state.
 class AuthProvider with ChangeNotifier {
-  AuthProvider({required AuthUseCases authUseCases}) 
-      : _authUseCases = authUseCases {
+  AuthProvider({required UserUseCases userUseCases}) 
+      : _userUseCases = userUseCases {
     _initializeUser();
   }
 
-  final AuthUseCases _authUseCases;
+  final UserUseCases _userUseCases;
 
   User? _user;
   User? get user => _user;
@@ -95,8 +95,8 @@ class AuthProvider with ChangeNotifier {
   }
 
   bool validateLoginFields(String email, String password) {
-    _errorEmail = _authUseCases.validateEmail(email);
-    _errorPassword = _authUseCases.validatePassword(password);
+    _errorEmail = _userUseCases.validateEmail(email);
+    _errorPassword = _userUseCases.validatePassword(password);
 
     notifyListeners();
 
@@ -104,9 +104,9 @@ class AuthProvider with ChangeNotifier {
   }
 
   bool validateRegisterFields(String name, String email, String password) {
-    _errorName = _authUseCases.validateName(name);
-    _errorEmail = _authUseCases.validateEmail(email);
-    _errorPassword = _authUseCases.validatePassword(password);
+    _errorName = _userUseCases.validateName(name);
+    _errorEmail = _userUseCases.validateEmail(email);
+    _errorPassword = _userUseCases.validatePassword(password);
 
     notifyListeners();
 
@@ -125,7 +125,7 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
 
     try {
-      final user = await _authUseCases.login(email, password);
+      final user = await _userUseCases.login(email, password);
 
       if (user != null) {
         await _saveUserToStorage(user);
@@ -148,7 +148,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<User?> getUserByEmail(String email) async {
     try {
-      return await _authUseCases.getUserByEmail(email);
+      return await _userUseCases.getUserByEmail(email);
     } catch (error) {
       // TODO: Handle error appropriately
       return null;
@@ -159,7 +159,7 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
 
     try {
-      final userId = await _authUseCases.addUser(user);
+      final userId = await _userUseCases.addUser(user);
       
       if (userId > 0) {
         final registeredUser = User(
@@ -185,7 +185,7 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
 
     try {
-      final rowsAffected = await _authUseCases.updateUser(user);
+      final rowsAffected = await _userUseCases.updateUser(user);
 
       if (rowsAffected > 0) {
         await _saveUserToStorage(user);
@@ -208,7 +208,7 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
 
     try {
-      final rowsAffected = await _authUseCases.deleteUser(id);
+      final rowsAffected = await _userUseCases.deleteUser(id);
 
       if (rowsAffected > 0 && _user?.id == id) {
         await logout();

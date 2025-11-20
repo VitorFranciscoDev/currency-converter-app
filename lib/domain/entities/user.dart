@@ -1,58 +1,30 @@
 // User's Entitie
 class User {
   // Attributes
-  final int? id;
-  final String name;
-  final String email;
+  final int? _id;
+  final String _name;
+  final String _email;
   final String password;
 
   // Constructor
   const User({
-    this.id,
-    required this.name,
-    required this.email,
-    required this.password,
-  });
-
-  // User's Copy
-  User copyWith({
     int? id,
-    String? name,
-    String? email,
-    String? password,
-  }) {
-    return User(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      email: email ?? this.email,
-      password: password ?? this.password,
-    );
-  }
+    required String name,
+    required String email,
+    required this.password,
+  }) :
+    _id = id,
+    _name = name,
+    _email = email;
 
-  // Override to Compare Objects
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is User &&
-      other.id == id &&
-      other.name == name &&
-      other.email == email &&
-      other.password == password;
-  }
-
-  // Override to Compare Objects
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      name.hashCode ^
-      email.hashCode ^
-      password.hashCode;
-  }
+  // Getters
+  int? get id => _id;
+  String get name => _name;
+  String get email => _email;
 
   // Debug Print
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email)';
+    return 'User(id: $_id, name: $_name, email: $_email)';
   }
 }

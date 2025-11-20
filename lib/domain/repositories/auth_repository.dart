@@ -1,7 +1,7 @@
 import 'package:currency_converter/domain/entities/user.dart';
 
-// Auth Contracts
-abstract class AuthRepository {
+// User Contracts
+abstract class UserRepository {
   // User's Query
   Future<User?> login(String email, String password);
   Future<User?> getUserByEmail(String email);
