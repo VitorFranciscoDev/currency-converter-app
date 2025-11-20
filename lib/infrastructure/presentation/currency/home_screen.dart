@@ -1,4 +1,5 @@
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,25 +34,19 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             
             // Header
             Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    Icons.swap_horiz_rounded,
-                    size: 20,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(width: 12),
+                // Logo
+                LogoWidget(isHorizontal: false, size: 20),
+
+                const SizedBox(width: 10),
+                
+                // Welcome Message
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,15 +76,15 @@ class _HomeScreenState extends State<HomeScreen> {
       
             const SizedBox(height: 20),
       
+            // Search Currencies
             TextField(
               controller: _controllerSearch,
               onChanged: (value) {
                 //context.read<HomeProvider>().searchLocations(value);
               },
-              style: TextStyle(fontSize: 15),
               decoration: InputDecoration(
                 hintText: "Search Currencies...",
-                hintStyle: TextStyle(color: Colors.grey[400], fontSize: 15),
+                hintStyle: TextStyle(color: Colors.grey[400]),
                 prefixIcon: Icon(
                   Icons.search,
                   color: theme.colorScheme.primary,
@@ -129,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
       
             const SizedBox(height: 20),
-      
+
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -177,8 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-                      
-            const SizedBox(height: 20),
+
+            const SizedBox(height: 15),
       
             Text(
               "Popular Currencies",
@@ -188,12 +183,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: theme.colorScheme.primary,
               ),
             ),
-      
+
             const SizedBox(height: 10),
-      
+    
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.4,
@@ -298,28 +294,13 @@ class _HomeScreenState extends State<HomeScreen> {
       
             const SizedBox(height: 20),
       
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Recent Conversions",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "View All",
-                    style: TextStyle(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
+            Text(
+              "Recent Conversions",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.primary,
+              ),
             ),
       
             const SizedBox(height: 10),
@@ -394,9 +375,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               );
-            }).toList(),
-      
-            const SizedBox(height: 20),
+            }),
+
+            const SizedBox(height: 10),
           ],
         ),
       ),

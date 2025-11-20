@@ -55,12 +55,12 @@ class LogoWidget extends StatelessWidget {
       Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: theme.colorScheme.primary,
+          color: theme.colorScheme.primary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Icon(
-          Icons.currency_exchange_rounded,
-          color: Colors.white,
+          Icons.swap_horiz_rounded,
+          color: theme.colorScheme.primary,
           size: size,
         ),
       );

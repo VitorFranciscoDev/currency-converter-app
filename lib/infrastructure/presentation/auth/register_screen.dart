@@ -116,10 +116,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
           
                       // Email
                       TextFieldWidget(
-                        controller: _controllerEmail, 
+                        controller: _controllerName, 
                         label: "Name", 
                         hint: "name",
-                        error: provider.errorEmail,
+                        error: provider.errorName,
                       ),
           
                       const SizedBox(height: 10),
