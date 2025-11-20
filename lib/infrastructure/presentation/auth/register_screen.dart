@@ -4,6 +4,7 @@ import 'package:currency_converter/infrastructure/presentation/auth/login_screen
 import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/logo_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/outlined_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -81,39 +82,76 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Name
-            TextFieldWidget(
-              controller: _controllerName, 
-              label: "Name", 
-              hint: "Name",
-              error: provider.errorName,
-            ),
+            // Logo
+            LogoWidget(isHorizontal: true, size: 40),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
 
-            // Email
-            TextFieldWidget(
-              controller: _controllerEmail, 
-              label: "Email", 
-              hint: "your@email.com",
-              error: provider.errorEmail,
-            ),
+            // Form
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.background,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: theme.colorScheme.primary,
+                  width: 1.5,
+                ),
+              ),
+              child: Column(
+                children: [
+                  const Text(
+                    "Welcome!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
 
-            const SizedBox(height: 10),
+                  const Text("Sign Up to see all currencies."),
 
-            TextFieldWidget(
-              controller: _controllerPassword, 
-              label: "Password", 
-              hint: "password",
-              error: provider.errorPassword,
-              isPassword: true,
-            ),
+                  const SizedBox(height: 20),
 
-            const SizedBox(height: 10),
+                  // Email
+                  TextFieldWidget(
+                    controller: _controllerEmail, 
+                    label: "Name", 
+                    hint: "name",
+                    error: provider.errorEmail,
+                  ),
 
-            ElevatedButtonWidget(
-              function: () => _registerUser(), 
-              text: "Sign Up",
+                  const SizedBox(height: 10),
+
+                  // Email
+                  TextFieldWidget(
+                    controller: _controllerEmail, 
+                    label: "Email", 
+                    hint: "your@email.com",
+                    error: provider.errorEmail,
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // Password
+                  TextFieldWidget(
+                    controller: _controllerPassword, 
+                    label: "Password", 
+                    hint: "password",
+                    error: provider.errorPassword,
+                    isPassword: true,
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // Button
+                  ElevatedButtonWidget(
+                    function: () => _registerUser(), 
+                    text: "Sign Up",
+                  ),
+
+                  const SizedBox(height: 5),
+                ],
+              ),
             ),
 
             const SizedBox(height: 20),

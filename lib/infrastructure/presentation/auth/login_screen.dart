@@ -3,6 +3,7 @@ import 'package:currency_converter/infrastructure/presentation/auth/register_scr
 import 'package:currency_converter/infrastructure/presentation/widgets/bottom_navigator_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/logo_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/outlined_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -78,64 +79,36 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary,
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: const Icon(
-                    Icons.currency_exchange_rounded,
-                    color: Colors.white,
-                    size: 32,
-                  ),
-                ),
-                
-                const SizedBox(width: 12),
-                
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      "Currency Converter",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    Text(
-                      "EXCHANGE MADE SIMPLE",
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.primary,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            // Logo
+            LogoWidget(isHorizontal: true, size: 40),
 
             const SizedBox(height: 30),
 
+            // Form
             Container(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: theme.colorScheme.background,
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
-                  color: theme.colorScheme.primary.withOpacity(0.2),
+                  color: theme.colorScheme.primary,
                   width: 1.5,
                 ),
               ),
               child: Column(
                 children: [
+                  const Text(
+                    "Welcome Back!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+
+                  const Text("Log In to trade currencies."),
+
+                  const SizedBox(height: 20),
+
                   // Email
                   TextFieldWidget(
                     controller: _controllerEmail, 
@@ -146,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 10),
 
+                  // Password
                   TextFieldWidget(
                     controller: _controllerPassword, 
                     label: "Password", 
@@ -156,20 +130,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 10),
 
+                  // Button
                   ElevatedButtonWidget(
                     function: () => _login(), 
                     text: "Sign In",
                   ),
+
+                  const SizedBox(height: 5),
                 ],
               ),
             ),
             
             const SizedBox(height: 20),
 
+            // Divider
             DividerWidget(),
 
             const SizedBox(height: 20),
 
+            // Navigation to Register Button
             OutlinedButtonWidget(
               function: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
