@@ -1,3 +1,4 @@
+import 'package:currency_converter/infrastructure/database/recent_conversions_table.dart';
 import 'package:currency_converter/infrastructure/database/users_table.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -41,5 +42,6 @@ class CurrencyConverterDatabase {
   // Create Tables
   Future<void> _onCreateDatabase(Database db, int version) async {
     await UsersTable.createTable(db);
+    await RecentConversionsTable.createTable(db);
   }
 }

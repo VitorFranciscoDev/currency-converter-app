@@ -1,5 +1,5 @@
 import 'package:currency_converter/domain/entities/user.dart';
-import 'package:currency_converter/domain/repositories/auth_repository.dart';
+import 'package:currency_converter/domain/repositories/user_repository.dart';
 
 // User Use Cases
 class UserUseCases {

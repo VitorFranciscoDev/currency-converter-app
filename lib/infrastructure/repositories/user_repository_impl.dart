@@ -1,6 +1,6 @@
 import 'package:currency_converter/core/constants/database_constants.dart';
 import 'package:currency_converter/domain/entities/user.dart';
-import 'package:currency_converter/domain/repositories/auth_repository.dart';
+import 'package:currency_converter/domain/repositories/user_repository.dart';
 import 'package:currency_converter/infrastructure/database/database.dart';
 import 'package:currency_converter/infrastructure/models/user_model.dart';
 
