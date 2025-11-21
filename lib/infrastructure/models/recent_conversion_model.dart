@@ -1,6 +1,7 @@
 import 'package:currency_converter/domain/entities/recent_conversion.dart';
 
 class RecentConversionModel extends RecentConversion {
+  // Constructor
   const RecentConversionModel({
     required super.uid,
     required super.from,
@@ -10,6 +11,7 @@ class RecentConversionModel extends RecentConversion {
     required super.time,
   });
 
+  // RecentConversion => Json
   Map<String, dynamic> toJson() {
     return {
       'uid': uid,
@@ -21,6 +23,7 @@ class RecentConversionModel extends RecentConversion {
     };
   }
 
+  // Json => RecentConversion
   factory RecentConversionModel.fromJson(Map<String, dynamic> json) {
     return RecentConversionModel(
       uid: json['uid'], 

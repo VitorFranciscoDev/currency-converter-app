@@ -1,4 +1,4 @@
-import 'package:currency_converter/core/constants/database_constants.dart';
+import 'package:currency_converter/core/constants/database.dart';
 import 'package:sqflite/sqflite.dart';
 
 // Recent Conversions Table in SQLite Database

@@ -1,4 +1,3 @@
-// Recent Conversion Entitie
 class RecentConversion {
   // Attributes
   final int _uid;
@@ -32,9 +31,9 @@ class RecentConversion {
   double get result => _result;
   DateTime get time => _time;
 
-  // debug
+  // Debug
   @override
   String toString() {
-    return "$_from, $_to $_amount, $_result, $_time";
+    return "$_uid, $_from, $_to $_amount, $_result, $_time";
   }
 }

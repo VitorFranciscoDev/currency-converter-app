@@ -11,7 +11,7 @@ class ThemeProvider with ChangeNotifier {
   }
 
   // Current Theme
-  ThemeMode _currentThemeMode = Default.defaultThemeMode;
+  ThemeMode _currentThemeMode = DefaultConstants.defaultThemeMode;
   ThemeMode get currentThemeMode => _currentThemeMode;
 
   // Is Initialized Boolean
@@ -28,10 +28,10 @@ class ThemeProvider with ChangeNotifier {
 
     try {
       final savedThemeMode = await _loadThemeModeFromStorage();
-      _setThemeMode(savedThemeMode ?? Default.defaultThemeMode);
+      _setThemeMode(savedThemeMode ?? DefaultConstants.defaultThemeMode);
     } catch (error) {
       debugPrint('Error loading theme: $error');
-      _setThemeMode(Default.defaultThemeMode);
+      _setThemeMode(DefaultConstants.defaultThemeMode);
     } finally {
       _setInitialized(false);
     }

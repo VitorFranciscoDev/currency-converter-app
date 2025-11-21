@@ -1,10 +1,13 @@
 // Class for Database Constants like the Tables Names, Columns Names...
 class DatabaseConstants {
+  // Database Version
+  static const currentDatabaseVersion = 1;
+
   // Tables Names
   static const usersTableName = "users";
   static const recentConversionsTableName = "recentConversions";
 
-  // User's Columns Names
+  // Users Columns Names
   static const usersColumnID = "id";
   static const usersColumnName = "name";
   static const usersColumnEmail = "email";

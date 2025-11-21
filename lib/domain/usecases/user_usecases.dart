@@ -1,7 +1,6 @@
 import 'package:currency_converter/domain/entities/user.dart';
 import 'package:currency_converter/domain/repositories/user_repository.dart';
 
-// User Use Cases
 class UserUseCases {
   // Constructor
   const UserUseCases({ required UserRepository repository })
@@ -9,6 +8,8 @@ class UserUseCases {
 
   // Repository
   final UserRepository _repository;
+
+  // Validation
 
   // Name Validation
   String? validateName(String name) {

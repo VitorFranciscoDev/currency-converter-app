@@ -1,14 +1,16 @@
-import 'package:currency_converter/core/constants/database_constants.dart';
+import 'package:currency_converter/core/constants/database.dart';
 import 'package:currency_converter/domain/entities/recent_conversion.dart';
 import 'package:currency_converter/domain/repositories/recent_conversion_repository.dart';
 import 'package:currency_converter/infrastructure/database/database.dart';
 import 'package:currency_converter/infrastructure/models/recent_conversion_model.dart';
 
 class RecentConversionRepositoryImpl implements RecentConversionRepository {
+  // Constructor
   RecentConversionRepositoryImpl({
     CurrencyConverterDatabase? databaseManager,
   }) : _databaseManager = databaseManager ?? CurrencyConverterDatabase.instance;
 
+  // DB Manager
   final CurrencyConverterDatabase _databaseManager;
 
   @override

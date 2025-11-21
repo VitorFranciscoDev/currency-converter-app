@@ -1,17 +1,15 @@
+import 'package:currency_converter/core/constants/database.dart';
 import 'package:currency_converter/infrastructure/database/recent_conversions_table.dart';
 import 'package:currency_converter/infrastructure/database/users_table.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-// Database of the Application
 class CurrencyConverterDatabase {
   // Instances
   static Database? _database;
   CurrencyConverterDatabase._();
   static final CurrencyConverterDatabase instance = CurrencyConverterDatabase._();
-
-  // Database Version
-  static const int _currentDatabaseVersion = 1;
+  
 
   // Getter to DB
   Future<Database> get database async {
@@ -34,7 +32,7 @@ class CurrencyConverterDatabase {
 
     return await openDatabase(
       databaseFilePath,
-      version: _currentDatabaseVersion,
+      version: DatabaseConstants.currentDatabaseVersion,
       onCreate: _onCreateDatabase,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:currency_converter/domain/entities/user.dart';
 
-// User's Model
 class UserModel extends User {
+  // Constructor
   const UserModel({
     required super.id, 
     required super.name, 

@@ -11,7 +11,7 @@ class IntlProvider extends ChangeNotifier {
   }
 
   // Current Locale
-  Locale _currentLocale = Default.defaultLocale;
+  Locale _currentLocale = DefaultConstants.defaultLocale;
   Locale get currentLocale => _currentLocale;
 
   // Is Initialized Boolean
@@ -28,10 +28,10 @@ class IntlProvider extends ChangeNotifier {
 
     try {
       final savedLocale = await _loadLocaleFromStorage();
-      _setLocale(savedLocale ?? Default.defaultLocale);
+      _setLocale(savedLocale ?? DefaultConstants.defaultLocale);
     } catch (error) {
       debugPrint('Error loading language: $error');
-      _setLocale(Default.defaultLocale);
+      _setLocale(DefaultConstants.defaultLocale);
     } finally {
       _setInitialized(false);
     }
@@ -101,7 +101,7 @@ class IntlProvider extends ChangeNotifier {
       case 'es':
         return const Locale('es', 'ES');
       default:
-        return Default.defaultLocale;
+        return DefaultConstants.defaultLocale;
     }
   }
 }

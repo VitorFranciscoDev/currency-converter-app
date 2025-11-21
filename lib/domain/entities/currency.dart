@@ -1,4 +1,3 @@
-// Currency's Entitie
 class Currency {
   // Attributes
   final String _base;
@@ -16,7 +15,7 @@ class Currency {
   String get base => _base;
   List<Map<String, double>> get rates => _rates;
 
-  // Debug Print
+  // Debug
   @override
   String toString() {
     return 'Currency(base: $_base, rates: $_rates)';

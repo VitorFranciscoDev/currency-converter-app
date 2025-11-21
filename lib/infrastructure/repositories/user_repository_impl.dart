@@ -1,4 +1,4 @@
-import 'package:currency_converter/core/constants/database_constants.dart';
+import 'package:currency_converter/core/constants/database.dart';
 import 'package:currency_converter/domain/entities/user.dart';
 import 'package:currency_converter/domain/repositories/user_repository.dart';
 import 'package:currency_converter/infrastructure/database/database.dart';
@@ -11,6 +11,7 @@ class UserRepositoryImpl implements UserRepository {
     CurrencyConverterDatabase? databaseManager,
   }) : _databaseManager = databaseManager ?? CurrencyConverterDatabase.instance;
 
+  // DB Manager
   final CurrencyConverterDatabase _databaseManager;
 
   @override
