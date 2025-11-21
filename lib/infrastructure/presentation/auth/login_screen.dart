@@ -28,23 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void _showSnackBar(String message, bool error) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(error ? Icons.error : Icons.check, color: error ? Colors.red : Colors.green),
-            SizedBox(width: 8),
-            Text(message, style: TextStyle(color: Colors.black)),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-  }
-
   Future<void> _login() async {
     final provider = context.read<AuthProvider>();
 
@@ -71,14 +54,21 @@ class _LoginScreenState extends State<LoginScreen> {
         showDialog(
           context: context, 
           builder: (context) => AlertDialogWidget(
-            title: "Email or Password Invalids.", 
+            title: "Email or Password Invalid.", 
             action2: () => Navigator.pop(context), 
             action2message: "Ok",
           ),
         );
       }
     } catch(error) {
-      _showSnackBar("Unexpected Error.", true);
+      showDialog(
+        context: context, 
+        builder: (context) => AlertDialogWidget(
+          title: "Unexpected Error.", 
+          action2: () => Navigator.pop(context), 
+          action2message: "Ok",
+        ),
+      );
     }
   }
 

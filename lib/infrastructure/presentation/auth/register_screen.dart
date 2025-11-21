@@ -1,7 +1,7 @@
 import 'package:currency_converter/domain/entities/user.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/login_screen.dart';
-import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/alert_dialog_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/logo_widget.dart';
@@ -30,23 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  void _showSnackBar(String message, bool error) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(error ? Icons.error : Icons.check, color: error ? Colors.red : Colors.green),
-            SizedBox(width: 8),
-            Text(message, style: TextStyle(color: Colors.black)),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-  }
-
   Future<void> _registerUser() async {
     final provider = context.read<AuthProvider>();
 
@@ -60,13 +43,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
       final index = await provider.registerUser(user);
 
       if(index > 0) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyApp()));
-        _clearFields();
-
-        _showSnackBar("Register Successful", false);
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialogWidget(
+            title: "Register Succesful", 
+            action2: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              _clearFields();
+            }, 
+            action2message: "Ok",
+          ),
+        );
       }
     } catch(error) {
-      _showSnackBar("Unexpected Error.", true);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogWidget(
+          title: "Unexpected Error.", 
+          action2: () => Navigator.pop(context),
+          action2message: "Ok",
+        ),
+      );
     }
   }
 

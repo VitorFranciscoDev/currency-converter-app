@@ -52,7 +52,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> _initializeUser() async {
-    _setInitialized(true);
+    _setInitialized(false);
 
     try {
       final user = await _loadUserFromStorage();
@@ -60,7 +60,7 @@ class AuthProvider with ChangeNotifier {
     } catch (error) {
       _setUser(null);
     } finally {
-      _setInitialized(false);
+      _setInitialized(true);
     }
   }
 
