@@ -1,9 +1,12 @@
+import 'package:currency_converter/domain/usecases/recent_conversion_usecases.dart';
+import 'package:currency_converter/infrastructure/presentation/currency/currency_state.dart';
 import 'package:currency_converter/infrastructure/presentation/preferences/intl_state.dart';
 import 'package:currency_converter/infrastructure/presentation/preferences/theme_state.dart';
 import 'package:currency_converter/domain/usecases/user_usecases.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/app.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/bottom_navigator_widget.dart';
+import 'package:currency_converter/infrastructure/repositories/recent_conversion_repository_impl.dart';
 import 'package:currency_converter/infrastructure/repositories/user_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +14,9 @@ import 'package:provider/provider.dart';
 void main() {
   final userRepository = UserRepositoryImpl();
   final userUseCases = UserUseCases(repository: userRepository);
+  
+  final recentConversionRepository = RecentConversionRepositoryImpl();
+  final recentConversionUseCases = RecentConversionUseCases(repository: recentConversionRepository);
 
   runApp(
     MultiProvider(
@@ -18,6 +24,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => IntlProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider(userUseCases: userUseCases)),
+        ChangeNotifierProvider(create: (_) => CurrencyProvider(recentConversionUseCases: recentConversionUseCases)),
         ChangeNotifierProvider(create: (_) => BottomNavigatorProvider()),
       ],
       child: const MyApp(),

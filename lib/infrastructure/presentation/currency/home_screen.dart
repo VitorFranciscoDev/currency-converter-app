@@ -1,4 +1,5 @@
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/bottom_navigator_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -124,57 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
       
             const SizedBox(height: 20),
-
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    theme.colorScheme.primary,
-                    theme.colorScheme.primary.withOpacity(0.8),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Convert Now",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                        const Text(
-                          "Make New Conversion",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_rounded,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 15),
       
+            // Popular Currencies
             Text(
               "Popular Currencies",
               style: TextStyle(
@@ -206,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: theme.colorScheme.background,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(
-                      color: theme.colorScheme.primary.withOpacity(0.2),
+                      color: theme.colorScheme.primary,
                       width: 1.5,
                     ),
                   ),
@@ -294,6 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
       
             const SizedBox(height: 20),
       
+            // Recent Conversions
             Text(
               "Recent Conversions",
               style: TextStyle(
@@ -305,79 +258,117 @@ class _HomeScreenState extends State<HomeScreen> {
       
             const SizedBox(height: 10),
       
-            ...recentConversions.map((conversion) {
+            ...recentConversions.map((recentConversion) {
               return Container(
                 margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.background,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: theme.colorScheme.primary.withOpacity(0.2),
+                    color: theme.colorScheme.primary,
                     width: 1.5,
                   ),
                 ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(15),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        Icons.swap_horiz_rounded,
+                        color: theme.colorScheme.primary,
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Icon(
-                              Icons.swap_horiz_rounded,
-                              color: theme.colorScheme.primary,
-                              size: 24,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${conversion['from']} → ${conversion['to']}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: theme.colorScheme.primary,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  "${conversion['amount']} ${conversion['from']} = ${conversion['result']} ${conversion['to']}",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Text(
-                            conversion['time'],
+                            "${recentConversion['from']} → ${recentConversion['to']}",
                             style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.grey[500],
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: theme.colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            "${recentConversion['amount']} ${recentConversion['from']} = ${recentConversion['result']} ${recentConversion['to']}",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
+                    Text(
+                      recentConversion['time'],
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.grey[500],
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               );
             }),
 
-            const SizedBox(height: 10),
+            GestureDetector(
+              onTap: () => context.read<BottomNavigatorProvider>().index = 1,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      theme.colorScheme.primary,
+                      theme.colorScheme.secondary,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Convert Now",
+                          style: TextStyle(
+                            color: theme.colorScheme.background,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          "Make New Conversion",
+                          style: TextStyle(
+                            color: theme.colorScheme.background,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      color: theme.colorScheme.background,
+                      size: 30,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
