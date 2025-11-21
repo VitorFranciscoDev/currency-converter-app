@@ -1,5 +1,6 @@
 import 'package:currency_converter/infrastructure/presentation/auth/auth_state.dart';
 import 'package:currency_converter/infrastructure/presentation/auth/register_screen.dart';
+import 'package:currency_converter/infrastructure/presentation/widgets/alert_dialog_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/bottom_navigator_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/divider_widget.dart';
 import 'package:currency_converter/infrastructure/presentation/widgets/elevated_button_widget.dart';
@@ -55,12 +56,26 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = await provider.login(_controllerEmail.text, _controllerPassword.text);
 
       if(user != null) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavigatorWidget()));
-        _clearFields();
-
-        _showSnackBar("Login Successful", false);
+        showDialog(
+          context: context, 
+          builder: (context) => AlertDialogWidget(
+            title: "Login Successful!", 
+            action2: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavigatorWidget()));
+              _clearFields();
+            }, 
+            action2message: "Enter",
+          ),
+        );
       } else {
-        _showSnackBar("Email or Password invalids.", true);
+        showDialog(
+          context: context, 
+          builder: (context) => AlertDialogWidget(
+            title: "Email or Password Invalids.", 
+            action2: () => Navigator.pop(context), 
+            action2message: "Ok",
+          ),
+        );
       }
     } catch(error) {
       _showSnackBar("Unexpected Error.", true);
